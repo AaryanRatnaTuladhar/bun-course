@@ -25,6 +25,13 @@ const server = Bun.serve({
 
     return new Response("Not Found", { status: 404 });
   },
+  error(error) {
+    return new Response(`<pre> \n ${error.stack} </pre>`, {
+      headers: {
+        "Content-Type": "text/html",
+      },
+    });
+  },
 });
 
 console.log(`Listening on PORT http://localhost:${server.port}`);
